@@ -17,10 +17,16 @@ export class MyButton {
     console.log("SubmitButton Event is handled...", details);
   }
 
+  async retriveCount(): Promise<void> {
+    const counterElement = document.querySelector('user-card');
+    const count = await counterElement.getCount();
+    console.log("counter value is : ", count);
+  }
+
   render() {
     return (
       <>
-        <button> Click me to listen to click Event </button>
+        <button onClick={this.retriveCount}> Click me to listen to click Event </button>
         <my-submit-button></my-submit-button>
       </>
     );

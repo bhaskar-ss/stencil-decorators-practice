@@ -28,6 +28,7 @@ export namespace Components {
     }
     interface UserCard {
         "email": string;
+        "getCount": () => Promise<number>;
         "name": string;
     }
 }
