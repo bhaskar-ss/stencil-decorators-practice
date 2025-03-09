@@ -22,6 +22,8 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface MyFocusableInput {
+    }
     interface MySubmitButton {
     }
     interface UserCard {
@@ -45,6 +47,12 @@ declare global {
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
+    };
+    interface HTMLMyFocusableInputElement extends Components.MyFocusableInput, HTMLStencilElement {
+    }
+    var HTMLMyFocusableInputElement: {
+        prototype: HTMLMyFocusableInputElement;
+        new (): HTMLMyFocusableInputElement;
     };
     interface HTMLMySubmitButtonElementEventMap {
         "submitButton": any;
@@ -72,6 +80,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-button": HTMLMyButtonElement;
         "my-component": HTMLMyComponentElement;
+        "my-focusable-input": HTMLMyFocusableInputElement;
         "my-submit-button": HTMLMySubmitButtonElement;
         "user-card": HTMLUserCardElement;
     }
@@ -93,6 +102,8 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface MyFocusableInput {
+    }
     interface MySubmitButton {
         "onSubmitButton"?: (event: MySubmitButtonCustomEvent<any>) => void;
     }
@@ -103,6 +114,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "my-button": MyButton;
         "my-component": MyComponent;
+        "my-focusable-input": MyFocusableInput;
         "my-submit-button": MySubmitButton;
         "user-card": UserCard;
     }
@@ -113,6 +125,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-button": LocalJSX.MyButton & JSXBase.HTMLAttributes<HTMLMyButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-focusable-input": LocalJSX.MyFocusableInput & JSXBase.HTMLAttributes<HTMLMyFocusableInputElement>;
             "my-submit-button": LocalJSX.MySubmitButton & JSXBase.HTMLAttributes<HTMLMySubmitButtonElement>;
             "user-card": LocalJSX.UserCard & JSXBase.HTMLAttributes<HTMLUserCardElement>;
         }
