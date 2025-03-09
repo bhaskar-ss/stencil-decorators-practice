@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Prop, State, h, Watch } from '@stencil/core';
 
 @Component({
   tag: 'user-card',
@@ -12,8 +12,21 @@ export class UserCard {
 
   @State() counter: number = 0;
 
+  @Watch('counter')
+  WatchCounterHandler(newValue: boolean, oldValue: boolean){
+    console.log("the old value of counter is : ", this.counter);
+    console.log("the new value of counter is : ", this.counter);
+  }
+
+  @Watch('name')
+  WatchNameHandler(newValue: boolean, oldValue: boolean){
+    console.log("the old value of name is : ", this.name);
+    console.log("the new value of name is : ", this.name);
+  }
+
   increment = () => {
-    this.counter += 1
+    this.counter += 1;
+    this.name = this.name + this.counter;
   }
 
   render() {
