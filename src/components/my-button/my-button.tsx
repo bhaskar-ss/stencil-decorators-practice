@@ -11,9 +11,18 @@ export class MyButton {
   onClickHandler() {
     console.log("button component clicked..")
   }
+
+  @Listen('submitButton')
+  handleSubmitButton(details: {}) {
+    console.log("SubmitButton Event is handled...", details);
+  }
+
   render() {
     return (
-      <button> Click me to listen to click Event </button>
+      <>
+        <button> Click me to listen to click Event </button>
+        <my-submit-button></my-submit-button>
+      </>
     );
   }
 }

@@ -22,10 +22,16 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface MySubmitButton {
+    }
     interface UserCard {
         "email": string;
         "name": string;
     }
+}
+export interface MySubmitButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMySubmitButtonElement;
 }
 declare global {
     interface HTMLMyButtonElement extends Components.MyButton, HTMLStencilElement {
@@ -40,6 +46,23 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLMySubmitButtonElementEventMap {
+        "submitButton": any;
+    }
+    interface HTMLMySubmitButtonElement extends Components.MySubmitButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMySubmitButtonElementEventMap>(type: K, listener: (this: HTMLMySubmitButtonElement, ev: MySubmitButtonCustomEvent<HTMLMySubmitButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMySubmitButtonElementEventMap>(type: K, listener: (this: HTMLMySubmitButtonElement, ev: MySubmitButtonCustomEvent<HTMLMySubmitButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLMySubmitButtonElement: {
+        prototype: HTMLMySubmitButtonElement;
+        new (): HTMLMySubmitButtonElement;
+    };
     interface HTMLUserCardElement extends Components.UserCard, HTMLStencilElement {
     }
     var HTMLUserCardElement: {
@@ -49,6 +72,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-button": HTMLMyButtonElement;
         "my-component": HTMLMyComponentElement;
+        "my-submit-button": HTMLMySubmitButtonElement;
         "user-card": HTMLUserCardElement;
     }
 }
@@ -69,6 +93,9 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface MySubmitButton {
+        "onSubmitButton"?: (event: MySubmitButtonCustomEvent<any>) => void;
+    }
     interface UserCard {
         "email"?: string;
         "name"?: string;
@@ -76,6 +103,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "my-button": MyButton;
         "my-component": MyComponent;
+        "my-submit-button": MySubmitButton;
         "user-card": UserCard;
     }
 }
@@ -85,6 +113,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-button": LocalJSX.MyButton & JSXBase.HTMLAttributes<HTMLMyButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-submit-button": LocalJSX.MySubmitButton & JSXBase.HTMLAttributes<HTMLMySubmitButtonElement>;
             "user-card": LocalJSX.UserCard & JSXBase.HTMLAttributes<HTMLUserCardElement>;
         }
     }
