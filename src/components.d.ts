@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MyButton {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -26,6 +28,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLMyButtonElement extends Components.MyButton, HTMLStencilElement {
+    }
+    var HTMLMyButtonElement: {
+        prototype: HTMLMyButtonElement;
+        new (): HTMLMyButtonElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -39,11 +47,14 @@ declare global {
         new (): HTMLUserCardElement;
     };
     interface HTMLElementTagNameMap {
+        "my-button": HTMLMyButtonElement;
         "my-component": HTMLMyComponentElement;
         "user-card": HTMLUserCardElement;
     }
 }
 declare namespace LocalJSX {
+    interface MyButton {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -63,6 +74,7 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface IntrinsicElements {
+        "my-button": MyButton;
         "my-component": MyComponent;
         "user-card": UserCard;
     }
@@ -71,6 +83,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "my-button": LocalJSX.MyButton & JSXBase.HTMLAttributes<HTMLMyButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "user-card": LocalJSX.UserCard & JSXBase.HTMLAttributes<HTMLUserCardElement>;
         }
