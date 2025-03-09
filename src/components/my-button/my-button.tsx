@@ -23,6 +23,22 @@ export class MyButton {
     console.log("counter value is : ", count);
   }
 
+  componentWillLoad(){
+    console.log("componentWillLoad is executed...")
+  }
+
+  componentDidLoad(){
+    console.log("componentDidLoad is executed...")
+  }
+
+  componentWillUpdate(){
+    console.log("componentWillUpdate is executed...")
+  }
+
+  componentDidUpdate(){
+    console.log("componentDidUpdate is executed...")
+  }
+
   render() {
     return (
       <>
